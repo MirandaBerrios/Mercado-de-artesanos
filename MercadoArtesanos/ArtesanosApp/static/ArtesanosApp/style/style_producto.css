@@ -1,0 +1,60 @@
+
+
+
+
+.mastergrid1{
+    margin-top: 400px;
+    height: max-content;
+    background-color: transparent;
+}
+
+.producto-principal{
+    border-radius: 8px;
+    margin-right: 50px;
+    height: 500px;
+}
+
+.precio_producto{
+    font-size:xx-large;
+    color:red;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.lateral{
+    float: left;
+    width: max-content;
+    
+    
+}
+
+.tag{
+    color: rgb(93,93,93);
+    font-size: medium;
+    margin-top: 5px;
+
+}
+.fav{
+    height: 25px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.butons{
+    background-color:rgb(30,206,138) ;
+    border-radius: 8px ;
+    border-color: green;
+    shape-margin: 0.5px;    
+    margin-top: 20px;
+}
+
+.list-description{
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.list-description p{
+    font-size:xx-large
+}
+    
+    

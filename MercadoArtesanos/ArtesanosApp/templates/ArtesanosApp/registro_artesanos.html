@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Artesanos</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/checkout/">
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/styleregistro.css">
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/stylefooter.css">
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_header.css"/>
+
+
+    <!-- Bootstrap core CSS -->
+
+<link href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/checkout/form-validation.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="../../static/ArtesanosApp/js/password.js"></script>
+    <script src="../../static/ArtesanosApp/js/validadores.js"></script>
+
+
+<body class="mainClass">
+
+  <header>
+    <!-- Fixed navbar -->
+    <nav class=" navbar navbar-expand-md  fixed-top nav_color">
+      <a class="navbar-brand" href="{% url 'home' %}"
+        ><img src="../../static/ArtesanosApp/icons/tienda-en-linea.png" alt="Mercado artesanos" height="50px"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Inicio <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto_artesanos' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <a href="{% url 'registro_artesanos' %}">
+            <input type="button" class="button1" value="Registrarse" />
+          </a>
+          <select id="slc_money" name="cambio_de_moneda" class="cambio_moneda1">
+            <!-- CAMBIO A DOLLAR  -->
+            <option id="slc_dollar" value="dollar" class="cambio_moneda">dollar</option>
+            <!-- CAMBIO A CLP -->
+            <option id="slc_clp" value="clp" class="cambio_moneda">clp</option>
+          </select>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+    <div class="container margenes-container">
+        <div class="py-5 text-center separacion">
+            <h2>Registro</h2>           
+            <p class="lead">Ingrese su información personal para registrarse en Mercado artesanos</p>
+        </div>
+
+          <div class="col-md-8 order-md-1 centrado">
+            <h4 class="mb-3">Datos</h4>
+            <form class="needs-validation" validate>
+                <div class="row">
+                <div class="col-md-6 mb-3"> 
+                    <label for="firstName">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                    Valid first name is required.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                    Valid last name is required.
+                    </div>
+                </div>
+                </div>
+
+                <div class="mb-3">
+                <label for="nombreUsuario">Nombre de usuario</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                    </div>
+                    <input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre de usuario" required>
+                    <div class="invalid-feedback" style="width: 100%;">
+                    Your username is required.
+                    </div>
+                </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="contraseña">Establezca su contraseña</label>
+                  <input type="password" class="form-control" id="contraseña" placeholder="Contraseña" required>
+                    <div class="desactive" id="mensajeContra">
+                      <h3>Su contraseña debe contener al menos una mayúscula.</h3>
+                    </div>
+                    
+                   <div class="custom-control custom-checkbox"> 
+                    <input type="checkbox" class="custom-control-input" id="mostrarcontraseña" oninput="mostrarContraseña()">
+                    <label class="custom-control-label" for="mostrarcontraseña">Mostrar contraseña</label>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="recontraseña">Repita su contraseña</label>
+                  <input type="password" class="form-control" id="recontraseña" placeholder="Contraseña" required>
+                  <div class="desactive" id="mensajeRecontra">
+                      <h3>Ambas contraseñas deben coincidir.<h3>
+                  </div>
+                  
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="mostrarrecontraseña" oninput="mostrarRecontraseña()">
+                    <label class="custom-control-label" for="mostrarrecontraseña">Mostrar contraseña</label>
+                  </div>
+                  </div>
+
+                <div class="mb-3">
+                <label for="email">Correo electrónico <span class="text-muted">(Opcional)</span></label>
+                <input type="email" class="form-control" id="email" placeholder="correo@correo.com">
+                <div class="invalid-feedback">
+                    Porfavor ingrese un correo electrónico valido.
+                </div>
+                </div>
+
+                <div class="mb-3">
+                <label for="dirección">Dirección</label>
+                <input type="text" class="form-control" id="dirección" placeholder="calle 1234" required>
+                <div class="invalid-feedback">
+                    Porfavor ingrese su dirección de envío.
+                </div>
+                </div>
+
+                <div class="mb-3">
+                <label for="dirección2">Segunda dirección <span class="text-muted">(Opcional)</span></label>
+                <input type="text" class="form-control" id="dirección2" placeholder="casa o departamento">
+                </div>
+
+                <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="país">Región</label>
+                    <select class="custom-select d-block w-100" id="Regiones" name="Regiones" required> 
+                      <!-- con el atributo name podremos saber que región se seleccionará -->
+                    <option disabled selected value="">Seleccionar...</option>
+                    </select>
+                    <div class="invalid-feedback">
+                    Porfavor selecione un país valido.
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="Provincias">Provincias</label>
+                    <select class="custom-select d-block w-100" id="Provincias" required>
+                    <option disabled selected value="">Seleccionar...</option>
+                    </select>
+                    <div class="invalid-feedback">
+                    Porfavor ingrese una ciudad valida.
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="Comuna">Comuna</label>
+                    <select class="custom-select d-block w-100" id="Comunas" required>
+                    <option disabled selected value="">Seleccionar...</option>
+                    </select>
+                    <div class="invalid-feedback">
+                    Porfavor ingrese una comuna valida.
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="codigoPostal">Codigo postal</label>
+                    <input type="text" class="form-control" id="codigoPostal" placeholder="83200000" required>
+                    <div class="invalid-feedback">
+                    Codigo postal requerido.
+                    </div>
+                </div>
+                </div>
+                <hr class="mb-4">
+                <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="mismaDirección">
+                <label class="custom-control-label" for="mismaDirección">Utilizar esta dirección para futuros pedidos.</label>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" id="btnEnviar">Registrarse</button>
+            </form>
+          </div>
+        </div>
+        <br><br><br><br><br>
+        <footer class="footer1">
+          <div class="container">
+            <div class="row1">
+              <div class="footer-col">
+                <h4>ubicacion</h4>
+                <ul>
+                  <li><p>Ricardo Matte Pérez 0270 Valparaiso</p></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>contacto</h4>
+                <ul>
+                  <li><p>wsp:+56956872415</p></li>
+                  <li><p>correo:Veranum@gmail.com</p></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>acceso rapido</h4>
+                <ul>
+                  <li><a href="{% url 'home' %}">inicio</a></li>
+                  <li><a href="{% url 'productos' %}">productos</a></li>
+                  <li><a href="{% url 'contacto_artesanos' %}">contáctenos</a></li>
+                  <li><a href="{% url 'aboutUs' %}">acerca de nostros</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>Redes sociales</h4>
+                <div class="social-links">
+                  <a href="https://es-la.facebook.com/pg/hotelcesarnic/posts/?ref=page_internal"
+                    ><img height="50px" src="../../static/ArtesanosApp/icons/facebook.png"
+                  /></a>
+                  <a href="https://twitter.com/sheratonhotels?lang=es"
+                    ><img height="50px" src="../../static/ArtesanosApp/icons/gorjeo.png"
+                  /></a>
+                  <a href="https://www.instagram.com/sheratonscl/?hl=es-la"
+                    ><img height="50px" src="../../static/ArtesanosApp/icons/instagram.png"
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+      
+</body>
+</html>

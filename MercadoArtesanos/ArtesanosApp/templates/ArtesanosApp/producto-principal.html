@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_producto_principal.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_producto_principal.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_producto.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style/style_header.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style/stylefooter.css">
+    <!-- JQUERY INVOKE -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <!-- LLAMAR A LAS HOJAS JS -->
+    <script src="./js/animacion.js"></script>
+    <script src="./js/product_information.js"></script>
+    <!-- LLAMAR API TO TRANSFORM DOLLAR TO CLP  -->
+    <script src="./js/dolar_clp_principal.js"></script> 
+
+    <title>Producto</title>
+  </head>
+<body class="mainClass">
+  <header>
+   <!-- Fixed navbar -->
+   <nav class=" navbar navbar-expand-md  fixed-top nav_color">
+    <a class="navbar-brand" href="{% url 'home' %}"
+      ><img src="../../static/ArtesanosApp/icons/tienda-en-linea.png" alt="Mercado artesanos" height="50px"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Inicio </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contacto_artesanos' %}">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+          <a href="{% url 'registro_artesanos' %}">
+          <input type="button" class="button1" value="Registrarse" />
+        </a>
+        <select id="slc_money" name="cambio_de_moneda" class="cambio_moneda1">
+          <!-- CAMBIO A DOLLAR  -->
+          <option id="slc_dollar" value="dollar" class="cambio_moneda">dollar</option>
+          <!-- CAMBIO A CLP -->
+          <option id="slc_clp" value="clp" class="cambio_moneda">clp</option>
+        </select>
+      </form>
+    </div>
+  </nav>
+  </header>
+
+    <div class="col-12 mastergrid1">
+      <div class="container-fluid dimension-producto col-sm-12 col-8">
+        <div class="row col-12">
+          <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 producto-principal">
+            <div class="container d-flex">
+              <div class="wrapper">
+                <div class="card">
+                  <span class="off bg-dark">0% Oferta </span>
+                  <div id="imagen_producto"class="text-center">
+                    <img
+                      id="main-image"
+                      src="../../static/ArtesanosApp/image/nostock.jpg"
+                    
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 lateral">
+            <div><h1 class="tag">Personalizable</h1></div>
+            <div  ><h2 id="titulo_producto" class="page-header">Nombre del producto</h2></div>
+            <div ><h2  id="precio_producto1" class="precio_producto" ></h2></div>
+            <div>
+              <a href=""><img class="fav" src="../../static/ArtesanosApp/image/corazon.png" /></a>
+            </div>
+            <div id="btn.carrito">
+              <a href=""
+                ><input class="butons" type="button" value="Agregar al carrito"
+              /></a>
+            </div>
+            <div id="btn.carrito">
+              <a href=""
+                ><input class="butons" type="button" value="Comprar"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid col-md-10 col-lg-10 col-xl-10 col-sm-12 mt-auto">
+      <div class="row">
+      <div  class="container text-center">
+        <h1 id="descripcion_titulo">Nombre del Producto</h1>
+      </div>
+      <div  class="list-description d-block align-items-center ">
+          <h3 id="descripcion_producto"></h3>
+      </div>
+    </div>  
+    </div>
+
+    <footer class="footer1">
+      <div class="container">
+        <div class="row1">
+          <div class="footer-col">
+            <h4>ubicacion</h4>
+            <ul>
+              <li><p>Ricardo Matte Pérez 0270 Valparaiso</p></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>contacto</h4>
+            <ul>
+              <li><p>wsp:+56956872415</p></li>
+              <li><p>correo:Veranum@gmail.com</p></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>acceso rapido</h4>
+            <ul>
+              <li><a href="{% url 'home' %}">inicio</a></li>
+              <li><a href="{% url 'productos' %}">productos</a></li>
+              <li><a href="{% url 'contacto_artesanos' %}">contáctenos</a></li>
+              <li><a href="{% url 'aboutUs' %}">acerca de nostros</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Redes sociales</h4>
+            <div class="social-links">
+              <a href="https://es-la.facebook.com/pg/hotelcesarnic/posts/?ref=page_internal"
+                ><img height="50px" src="../../static/ArtesanosApp/icons/facebook.png"
+              /></a>
+              <a href="https://twitter.com/sheratonhotels?lang=es"
+                ><img height="50px" src="../../static/ArtesanosApp/icons/gorjeo.png"
+              /></a>
+              <a href="https://www.instagram.com/sheratonscl/?hl=es-la"
+                ><img height="50px" src="../../static/ArtesanosApp/icons/instagram.png"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html> 
