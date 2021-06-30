@@ -1,0 +1,119 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/assets/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css.map" />
+    <title>Mercado Artesanos</title>
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/conf_producto.css">
+    <script src="../../static/ArtesanosApp/js/sweet_alert.js"></script>
+
+  </head>
+  <body>
+    <header>
+
+    </header>
+    <!-- SWEET ALERT2 -->
+    <script>
+      function eliminaProducto(id){
+        Swal.fire({
+          "title": "¿Estas seguro?",
+          "text":"Esta acción no se puede deshacer",
+          "icono":"question",
+          "showCancelButton":true,
+          "cancelButtonText":"No , Cancelar",
+          "confirmButtonText":"Si , Eliminar",
+          "reverseButtons":true,
+          "confirmButtonColor":"#FF0000",
+          "cancelButtonColor":"#218838"
+      
+        })
+        .then(function(result){
+          if(result.isConfirmed){
+            window.location.href = "/conf/del/"+id
+          }
+        })
+      }
+      </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+        {% for m in messages %}
+        <script>
+          Swal.fire({
+            "title":"Atencion",
+            "text":"{{m}}",
+            "icon":"warning"
+          })
+        </script>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container">
+        <br><br><br><br>
+      <h1 style="text-align: center !important">Mantenedor de Productos</h1>
+      
+      
+      {% if form  %}
+      <form method="POST" action="" enctype="multipart/form-data" id="formulario">
+        <div class="form-group">{% csrf_token %} {{ form|crispy }}</div>
+        <input type="submit"  class="btn btn-primary btnwidth" id="id_guardar" value="Guardar" />
+        <!-- <input type="reset" class="btn btn-primary btnwidth" id="id_nuevo" value="Nuevo"> -->
+        
+        {% if id != '-1' %}
+        <a class="btn btn-danger btnwidth" href="{% url 'conf_producto' 'del' id %}">Eliminar</a>
+        {% endif %}
+        
+        
+    </form>
+    <br><br><br><br><br><br>
+    
+    {% endif %} {% if list %}
+      <table id="tabla_datos " class="table-dark table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre Producto</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th class="titulo_boton">Editar</th>
+            <th class="titulo_boton">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for pd in list %}
+          <tr>
+            <td>{{ pd.id }}</td>
+            <td>{{ pd.nombre_producto }}</td>
+            <td>{{ pd.precio }}</td>
+            <td>{{ pd.descripcion }}</td>
+            <td><img src="/media/{{ pd.image }}" class="imagen_mini" alt="" /></td>
+            <td>
+              <a href="{% url 'conf_producto' 'upd' pd.id %}" class="btn btn-primary btn-sm boton_chico">Editar</a>
+            </td>
+            <td>
+              <a onclick="eliminaProducto({{ pd.id }})" class="btn btn-danger btn-sm boton_chico">Eliminar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      <br />
+    </div>
+
+    <!-- SWEET ALERT2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+  </body>
+</html>

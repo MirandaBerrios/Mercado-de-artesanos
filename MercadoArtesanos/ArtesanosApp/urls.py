@@ -8,5 +8,7 @@ urlpatterns = [
      path('productos', Productos, name="productos"),
      path('registro_artesanos', Registro_artesanos, name="registro_artesanos"),
      path('producto_principal', Producto_principal, name="producto-principal"),
+     path('conf/<action>/<id>', Productos_conf, name="conf_producto"),
+     path('conf', Listar_productos, name="listar_productos")
 
 ]
