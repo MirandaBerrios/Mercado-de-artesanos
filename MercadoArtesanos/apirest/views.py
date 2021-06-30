@@ -8,6 +8,7 @@ from ArtesanosApp.models import Producto
 from .serializers import ProductoSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
+from rest_framework import viewsets
 
 class Producto_create(APIView):
     def post(self, request, format=None):

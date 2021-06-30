@@ -13,14 +13,17 @@ def AboutUs(request):
 def Contacto_artesanos(request):
     return render(request , "ArtesanosApp/contacto_artesanos.html")
 
+
 def Home(request):
-    return render(request , "ArtesanosApp/home.html")
+    data = {"lista":Producto.objects.all().order_by('id')[0:4] , "lista2":Producto.objects.all().order_by('precio')[0:4]}
+    return render(request , "ArtesanosApp/home.html" , data)
 
 def Producto_principal(request):
     return render(request , "ArtesanosApp/producto_principal.html")
 
 def Productos(request):
-    return render(request , "ArtesanosApp/productos.html")
+    data = {"lista":Producto.objects.all().order_by('id')}
+    return render(request , "ArtesanosApp/productos.html", data)
 
 def Registro_artesanos(request):
     return render(request , "ArtesanosApp/registro_artesanos.html")

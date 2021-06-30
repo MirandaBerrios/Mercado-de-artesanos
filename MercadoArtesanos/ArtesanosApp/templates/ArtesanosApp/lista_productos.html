@@ -13,13 +13,64 @@
     <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css" />
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/" />
     <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css.map" />
-    <title>Mercado Artesanos</title>
     <link rel="stylesheet" href="../../static/ArtesanosApp/style/conf_producto.css">
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/stylefooter.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_header.css" />
     <script src="../../static/ArtesanosApp/js/sweet_alert.js"></script>
+    <title>Mercado Artesanos</title>
   </head>
   <body>
     <header>
+      <!-- Fixed navbar -->
+      <nav class=" navbar navbar-expand-md  fixed-top nav_color">
+        <a class="navbar-brand" href="{% url 'home' %}"
+          ><img src="../../static/ArtesanosApp/icons/tienda-en-linea.png" alt="Mercado artesanos" height="50px"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Inicio </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+            </li>
 
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contacto_artesanos' %}">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'listar_productos' %}">configurar productos</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+           
+            <a href="{% url 'registro_artesanos' %}">
+              <input type="button" class="button1" value="Registrarse" />
+            </a>
+            <select id="slc_money" name="cambio_de_moneda" class="cambio_moneda1">
+              <!-- CAMBIO A DOLLAR  -->
+              <option id="slc_dollar" value="dollar" class="cambio_moneda">dollar</option>
+              <!-- CAMBIO A CLP -->
+              <option id="slc_clp" value="clp" class="cambio_moneda">clp</option>
+            </select>
+          </form>
+        </div>
+      </nav>
+      <!-- INICIO CARRUSEL -->
     </header>
     <!-- SWEET ALERT -->
     <script>
@@ -55,32 +106,33 @@
             
       
     <br><br><br><br><br><br>
-    <a class="btn btn-success btnwidth float-right" href="{% url 'conf_producto' 'ins' -1 %}">Nuevo</a>
+    <a class="btn btn-success btnwidth float-right m-2" href="{% url 'conf_producto' 'ins' -1 %}">Agregar nuevo producto</a>
     {% if list %}
-      <table id="tabla_datos " class="table-dark table">
-        <thead>
+      <table id="tabla_datos " class="table">
+        <thead class="thead-dark">
           <tr>
             <th>ID</th>
             <th>Nombre Producto</th>
             <th>Precio</th>
             <th>Descripción</th>
+            <th>Imagen</th>
             <th class="titulo_boton">Editar</th>
             <th class="titulo_boton">Eliminar</th>
           </tr>
         </thead>
         <tbody>
           {% for pd in list %}
-          <tr>
-            <td>{{ pd.id }}</td>
-            <td>{{ pd.nombre_producto }}</td>
-            <td>{{ pd.precio }}</td>
-            <td>{{ pd.descripcion }}</td>
+          <tr >
+            <td class="align-middle" >{{ pd.id }}</td>
+            <td class="align-middle">{{ pd.nombre_producto }}</td>
+            <td class="align-middle">{{ pd.precio }}</td>
+            <td class="align-middle">{{ pd.descripcion }}</td>
             <td><img src="/media/{{ pd.image }}" class="imagen_mini" alt="" /></td>
-            <td>
-              <a href="{% url 'conf_producto' 'upd' pd.id %}" class="btn btn-primary btn-sm boton_chico">Editar</a>
+            <td class="align-middle">
+              <a href="{% url 'conf_producto' 'upd' pd.id %}" class="btn btn-primary btn-sm  ">Editar</a>
             </td>
-            <td>
-              <a  class="btn btn-danger btn-sm boton_chico" onclick="eliminaProducto({{ pd.id }})">Eliminar</a>
+            <td class="align-middle">
+              <a  class="btn btn-danger btn-sm " onclick="eliminaProducto({{ pd.id }})">Eliminar</a>
             </td>
           </tr>
           {% endfor %}
@@ -103,6 +155,48 @@
         </script>
       {% endfor %}
       {% endif %}
-
+        <br><br><br><br>
+      <footer class="footer1">
+        <div class="container">
+          <div class="row1">
+            <div class="footer-col">
+              <h4>ubicacion</h4>
+              <ul>
+                <li><p>Ricardo Matte Pérez 0270 Valparaiso</p></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>contacto</h4>
+              <ul>
+                <li><p>wsp:+56956872415</p></li>
+                <li><p>MercadoArtesanos@contacto.cl</p></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>acceso rapido</h4>
+              <ul>
+                <li><a href="{% url 'home' %}">inicio</a></li>
+                <li><a href="{% url 'productos' %}">productos</a></li>
+                <li><a href="{% url 'contacto_artesanos' %}">contáctenos</a></li>
+                <li><a href="{% url 'aboutUs' %}">acerca de nostros</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Redes sociales</h4>
+              <div class="social-links">
+                <a href="https://es-la.facebook.com/pg/hotelcesarnic/posts/?ref=page_internal"
+                  ><img height="50px" src="../../static/ArtesanosApp/icons/facebook.png"
+                /></a>
+                <a href="https://twitter.com/sheratonhotels?lang=es"
+                  ><img height="50px" src="../../static/ArtesanosApp/icons/gorjeo.png"
+                /></a>
+                <a href="https://www.instagram.com/sheratonscl/?hl=es-la"
+                  ><img height="50px" src="../../static/ArtesanosApp/icons/instagram.png"
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
   </body>
 </html>

@@ -1,9 +1,5 @@
-
-
-
-
 .mastergrid1{
-    margin-top: 400px;
+    margin-top: 100px;
     height: max-content;
     background-color: transparent;
 }
@@ -24,8 +20,6 @@
 .lateral{
     float: left;
     width: max-content;
-    
-    
 }
 
 .tag{

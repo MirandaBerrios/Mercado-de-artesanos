@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../../static/ArtesanosApp/style/stylefooter.css" />
     <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_home.css" />
     <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_header.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/conf_producto.css" />
     <link
       rel="stylesheet"
       href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/sticky-footer-navbar/sticky-footer-navbar.css"
@@ -45,12 +47,7 @@
       integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
       crossorigin="anonymous"
     ></script>
-    <!-- GUARDAR INFO DEL ELEMENTO CLICKEADO -->
-    <script src="../../static/ArtesanosApp/js/product_information.js"></script>
-    <!-- LLAMAR A API FAKE_STORE -->
-    <script src="../../static/ArtesanosApp/js/api_productos.js"></script>
-    <!-- LLAMAR API TO TRANSFORM DOLLAR TO CLP  -->
-    <script src="../../static/ArtesanosApp/js/clp_dollar.js"></script>
+  
     <title>Mercado Artesano</title>
   </head>
 
@@ -96,11 +93,7 @@
             <a href="{% url 'registro_artesanos' %}">
               <input type="button" class="button1" value="Registrarse" />
             </a>
-            <select id="slc_money" name="cambio_de_moneda" class="cambio_moneda1">
-              <!-- CAMBIO A DOLLAR  -->
-              <option id="slc_dollar" value="dollar" class="cambio_moneda">dollar</option>
-              <!-- CAMBIO A CLP -->
-              <option id="slc_clp" value="clp" class="cambio_moneda">clp</option>
+            
             </select>
           </form>
         </div>
@@ -108,21 +101,22 @@
       <!-- INICIO CARRUSEL -->
     </header>
     <br /><br /><br /><br /><br />
+    <!-- INICIO CARRUSEL -->
     <div id="carouselExampleFade" class="carousel slide carousel-fade col-9 m-auto" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <a href="#"
-            ><img src="../../static/ArtesanosApp/image/img1.jpg" class="d-block w-100" height="500px" alt="..."
+            ><img src="../../static/ArtesanosApp/image/artesano_oferta.jpg" class="d-block w-100" height="500px" alt="..."
           /></a>
         </div>
         <div class="carousel-item">
           <a href="#">
-            <img src="../../static/ArtesanosApp/image/img2.jpg" class="d-block w-100" height="500px" alt="..."
+            <img src="../../static/ArtesanosApp/image/imagen_oferta_PW.jpg" class="d-block w-100" height="500px" alt="..."
           /></a>
         </div>
         <div class="carousel-item">
           <a href="#"
-            ><img src="../../static/ArtesanosApp/image/img3.jpg" class="d-block w-100" height="500px" alt="..."
+            ><img src="../../static/ArtesanosApp/image/poncho.jpg" class="d-block w-100" height="500px" alt="..."
           /></a>
         </div>
       </div>
@@ -144,116 +138,42 @@
         <div class="col-sm-12">
           <h2 class="page-header p-5">Productos destacados</h2>
         </div>
+        {% for pd in lista %}
         <!-- INICIO PRODUCTO -->
-        
-        <div id="producto1" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto1" href="./producto-principal.html"> </a>
-          </div>
+        <div  class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
+            <a href="#"><img class="imagenes_producto mx-auto d-block" height='200px';
+              width='300px';id="{{ pd.id}}" src="/media/{{ pd.image }}"  /> </a>
+          
           <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto1" href="./producto-principal.html"
-              >nombre del producto
+            <a class="nombre_producto text-decoration-none" id="nombre_producto1" href="#"
+              >{{ pd.nombre_producto}}
             </a>
-            <div id="precio_producto1" class="precio-producto text-center">$90.000</div>
+            <div id="precio_producto1" class="precio-producto text-center">${{ pd.precio }}</div>
           </div>
         </div>
         <!-- FIN PRODUCTO -->
-        <!-- INICIO PRODUCTO -->
-        <div id="producto2" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto2" href="./producto-principal.html"> </a>
-          </div>
-          <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto2" href="./producto-principal.html"
-              >nombre del producto
-            </a>
-            <div id="precio_producto2" class="precio-producto text-center">$90.000</div>
-          </div>
-        </div>
-        <!-- FIN PRODUCTO -->
-        <!-- INICIO PRODUCTO -->
-        <div id="producto3" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto3" href="./producto-principal.html"> </a>
-          </div>
-          <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto3" href="./producto-principal.html"
-              >nombre del producto
-            </a>
-            <div id="precio_producto3" class="precio-producto text-center">$90.000</div>
-          </div>
-        </div>
-        <!-- FIN PRODUCTO -->
-        <!-- INICIO PRODUCTO -->
-        <div id="producto4" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto4" href="./producto-principal.html"> </a>
-          </div>
-          <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto4" href="./producto-principal.html"
-              >nombre del producto
-            </a>
-            <div id="precio_producto4" class="precio-producto text-center">$90.000</div>
-          </div>
-        </div>
-        <!-- FIN PRODUCTO -->
+        {% endfor %}
       </div>
       <div class="row dimension">
         <div class="col-sm-12">
           <h2 class="page-header p-5">Artesanos on Fire!!</h2>
         </div>
+        {% for pd in lista2 %}
         <!-- INICIO PRODUCTO -->
-        <div id="producto5" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto5" href="./producto-principal.html"> </a>
-          </div>
+        <div  class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
+            <a href="#"><img class="imagenes_producto mx-auto d-block" height='200px';
+              width='300px';id="{{ pd.id}}" src="/media/{{ pd.image }}"  /> </a>
+          
           <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto5" href="./producto-principal.html"
-              >nombre del producto
+            <a class="nombre_producto text-decoration-none" id="nombre_producto1" href="#"
+              >{{ pd.nombre_producto}}
             </a>
-            <div id="precio_producto5" class="precio-producto text-center">$90.000</div>
+            <div id="precio_producto1" class="precio-producto text-center">${{ pd.precio }}</div>
           </div>
         </div>
         <!-- FIN PRODUCTO -->
-        <!-- INICIO PRODUCTO -->
-        <div id="producto6" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto6" href="./producto-principal.html"> </a>
-          </div>
-          <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto6" href="./producto-principal.html"
-              >nombre del producto
-            </a>
-            <div id="precio_producto6" class="precio-producto text-center">$90.000</div>
-          </div>
-        </div>
-        <!-- FIN PRODUCTO -->
-        <!-- INICIO PRODUCTO -->
-        <div id="producto7" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto7" href="./producto-principal.html"> </a>
-          </div>
-          <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto7" href="./producto-principal.html"
-              >nombre del producto
-            </a>
-            <div id="precio_producto7" class="precio-producto text-center">$90.000</div>
-          </div>
-        </div>
-        <!-- FIN PRODUCTO -->
-        <!-- INICIO PRODUCTO -->
-        <div id="producto8" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-          <div class="imagenes_producto">
-            <a id="imagen_producto8" href="./producto-principal.html"> </a>
-          </div>
-          <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto8" href="./producto-principal.html"
-              >nombre del producto
-            </a>
-            <div id="precio_producto8" class="precio-producto text-center">$90.000</div>
-          </div>
-        </div>
-        <!-- FIN PRODUCTO -->
+        {% endfor %}
+      
       </div>
     </div>
     <!-- FIN PRODUCTOS DESTACADOS -->
@@ -262,7 +182,7 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"
     ></script>
-
+    
     <footer class="footer1">
       <div class="container">
         <div class="row1">
@@ -276,7 +196,7 @@
             <h4>contacto</h4>
             <ul>
               <li><p>wsp:+56956872415</p></li>
-              <li><p>correo:Veranum@gmail.com</p></li>
+              <li><p>MercadoArtesanos@contacto.cl</p></li>
             </ul>
           </div>
           <div class="footer-col">

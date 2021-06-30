@@ -26,51 +26,52 @@
 
   <body class="mainClass">
     <header>
-   <!-- Fixed navbar -->
-   <nav class=" navbar navbar-expand-md  fixed-top nav_color">
-    <a class="navbar-brand" href="{% url 'home' %}"
-      ><img src="../../static/ArtesanosApp/icons/tienda-en-linea.png" alt="Mercado artesanos" height="50px"
-    /></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarCollapse"
-      aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home' %}">Inicio </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'productos' %}">Productos</a>
-        </li>
+      <!-- Fixed navbar -->
+      <nav class=" navbar navbar-expand-md  fixed-top nav_color">
+        <a class="navbar-brand" href="{% url 'home' %}"
+          ><img src="../../static/ArtesanosApp/icons/tienda-en-linea.png" alt="Mercado artesanos" height="50px"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Inicio </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+            </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contacto_artesanos' %}">Contacto</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
-        </li>
-      </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <a href="{% url 'registro_artesanos' %}">
-          <input type="button" class="button1" value="Registrarse" />
-        </a>
-        <select id="slc_money" name="cambio_de_moneda" class="cambio_moneda1">
-          <!-- CAMBIO A DOLLAR  -->
-          <option id="slc_dollar" value="dollar" class="cambio_moneda">dollar</option>
-          <!-- CAMBIO A CLP -->
-          <option id="slc_clp" value="clp" class="cambio_moneda">clp</option>
-        </select>
-      </form>
-    </div>
-  </nav>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contacto_artesanos' %}">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'listar_productos' %}">configurar productos</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+           
+            <a href="{% url 'registro_artesanos' %}">
+              <input type="button" class="button1" value="Registrarse" />
+            </a>
+            
+            </select>
+          </form>
+        </div>
+      </nav>
+      <!-- INICIO CARRUSEL -->
     </header>
 
     <div class="container margenes-container">
@@ -162,7 +163,7 @@
             <h4>contacto</h4>
             <ul>
               <li><p>wsp:+56956872415</p></li>
-              <li><p>correo:Veranum@gmail.com</p></li>
+              <li><p>MercadoArtesanos@contacto.cl</p></li>
             </ul>
           </div>
           <div class="footer-col">
