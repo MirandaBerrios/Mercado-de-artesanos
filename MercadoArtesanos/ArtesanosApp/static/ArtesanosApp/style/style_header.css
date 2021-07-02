@@ -16,3 +16,24 @@
 .nav-link{
   color: white;
 }
+.nav-link:hover{
+  text-decoration:none;
+
+  color: papayawhip;
+}
+li{
+  list-style: none;
+}
+.btn_sesion{
+  margin-right:1em ;
+  width: 40px;
+  text-decoration:none;
+  color:white;
+  border-radius: 8px ;
+  padding: 0.6em;
+}
+
+.btn_sesion:hover{
+  text-decoration:none;
+  color: papayawhip;
+}

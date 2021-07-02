@@ -8,7 +8,9 @@ from ArtesanosApp.models import Producto
 from .serializers import ProductoSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework import viewsets 
+
+
 
 class Producto_create(APIView):
     def post(self, request, format=None):
@@ -26,19 +28,20 @@ class Producto_update(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def Producto_read(request, id):
     if request.method == 'GET':
         objeto = get_object_or_404(Producto, id=id)
         serializer = ProductoSerializer(objeto)
         return Response(serializer.data)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def Producto_read_all(request):
     if request.method == 'GET':
         list = Producto.objects.all()
         serializer = ProductoSerializer(list, many=True)
         return Response(serializer.data)
+    
 
 @api_view(['DELETE'])
 def Producto_delete(request, id):

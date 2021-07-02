@@ -56,21 +56,25 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
           </li>
+          {% if user.is_authenticated  %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'listar_productos' %}">configurar productos</a>
           </li>
+          {% endif %}
         </ul>
         <form class="form-inline mt-2 mt-md-0">
-         
-          <a href="{% url 'registro_artesanos' %}">
-            <input type="button" class="button1" value="Registrarse" />
-          </a>
-          
+        {% if user.is_authenticated  %}
+        <li><a class="btn_sesion" href="{% url 'logout' %}">cerrar sesión</a></li>
+        <li><a class="btn_sesion" href="#">@{{ user.username}}</a></li>
+
+        {% else %}  
+        <li><a class="btn_sesion" href="{% url 'login' %}">iniciar sesión</a></li>  
+        <li><a class="btn_sesion" href="{% url 'registro' %}">registrate</a></li>  
+        {% endif %}
           </select>
         </form>
       </div>
     </nav>
-    <!-- INICIO CARRUSEL -->
   </header>
 
     <div class="col-12 mastergrid1">

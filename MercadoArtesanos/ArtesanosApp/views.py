@@ -1,9 +1,10 @@
 from django.http import request
 from django.shortcuts import render , redirect
 from .models import Producto
-from .forms import ProductoForm
+from .forms import ProductoForm , CustomUserCreationForms
 from django.contrib import messages
-
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required , permission_required
 
 
 
@@ -15,7 +16,7 @@ def Contacto_artesanos(request):
 
 
 def Home(request):
-    data = {"lista":Producto.objects.all().order_by('id')[0:4] , "lista2":Producto.objects.all().order_by('precio')[0:4]}
+    data = {"lista":Producto.objects.all().order_by('id')[0:4] , "lista2":Producto.objects.all().order_by('precio')[8:12]}
     return render(request , "ArtesanosApp/home.html" , data)
 
 def Producto_principal(request):
@@ -31,7 +32,6 @@ def Registro_artesanos(request):
 # def poblar_bd(request):
 #     Producto.objects.create(ID=1 , NOMBRE_PRODUCTO='Chaslina', PRECIO= 9890 ,  DESCRIPCION="Fabricada con lana pigmentada \
 #                             con tintes naturales", IMAGE='../static/image/chaslina.jpg').objetcts.get
-
 
 def Productos_conf(request, action, id):
     data = {"mesg": "", "form": ProductoForm, "action": action, "id": id}
@@ -66,7 +66,18 @@ def Productos_conf(request, action, id):
     data["list"] = Producto.objects.all().order_by('id')
     return render(request, "ArtesanosApp/conf_producto.html", data)
 
-
 def Listar_productos(request):
     data = {"list":Producto.objects.all().order_by('id')}
     return render(request, 'ArtesanosApp/lista_productos.html', data)
+
+def registro(request):
+    data = {'form': CustomUserCreationForms}
+    if request.method == 'POST':
+        formulario = CustomUserCreationForms(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Te has registrado correctamente")
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
+            return redirect(to="home")
+    return render(request , 'registration/registro.html', data)

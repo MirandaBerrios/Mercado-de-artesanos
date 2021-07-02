@@ -53,25 +53,25 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
             </li>
+            {% if user.is_authenticated  %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'listar_productos' %}">configurar productos</a>
             </li>
+            {% endif %}
           </ul>
           <form class="form-inline mt-2 mt-md-0">
-           
-            <a href="{% url 'registro_artesanos' %}">
-              <input type="button" class="button1" value="Registrarse" />
-            </a>
-            <select id="slc_money" name="cambio_de_moneda" class="cambio_moneda1">
-              <!-- CAMBIO A DOLLAR  -->
-              <option id="slc_dollar" value="dollar" class="cambio_moneda">dollar</option>
-              <!-- CAMBIO A CLP -->
-              <option id="slc_clp" value="clp" class="cambio_moneda">clp</option>
+          {% if user.is_authenticated  %}
+          <li><a class="btn_sesion" href="{% url 'logout' %}">cerrar sesión</a></li>
+          <li><a class="btn_sesion" href="#">@{{ user.username}}</a></li>
+
+          {% else %}  
+          <li><a class="btn_sesion" href="{% url 'login' %}">iniciar sesión</a></li>  
+          <li><a class="btn_sesion" href="{% url 'registro' %}">registrate</a></li>  
+          {% endif %}
             </select>
           </form>
         </div>
       </nav>
-      <!-- INICIO CARRUSEL -->
     </header>
     <!-- SWEET ALERT2 -->
     <script>
@@ -112,7 +112,7 @@
         <br><br><br><br>
       <h1 style="text-align: center !important">Mantenedor de Productos</h1>
       
-      
+      {% if perms.ArtesanosApp.add_producto %}
       {% if form  %}
       <form method="POST" action="" enctype="multipart/form-data" id="formulario">
         <div class="form-group">{% csrf_token %} {{ form|crispy }}</div>
@@ -121,6 +121,7 @@
         
         {% if id != '-1' %}
         <a class="btn btn-danger btnwidth" href="{% url 'conf_producto' 'del' id %}">Eliminar</a>
+        {% endif %}
         {% endif %}
         
         
@@ -136,8 +137,12 @@
             <th>Precio</th>
             <th>Descripción</th>
             <th>Imagen</th>
+            {% if perms.ArtesanosApp.change_producto %}
             <th class="titulo_boton">Editar</th>
+            {% endif %}
+            {% if perms.ArtesanosApp.delete_producto %}
             <th class="titulo_boton">Eliminar</th>
+            {% endif %}
           </tr>
         </thead>
         <tbody>
@@ -149,10 +154,14 @@
             <td class="align-middle">{{ pd.descripcion }}</td>
             <td><img src="/media/{{ pd.image }}" class="imagen_mini" alt="" /></td>
             <td class="align-middle">
+              {% if perms.ArtesanosApp.change_producto %}
               <a href="{% url 'conf_producto' 'upd' pd.id %}" class="btn btn-primary btn-sm  ">Editar</a>
+              {% endif %}
             </td>
             <td class="align-middle">
+              {% if perms.ArtesanosApp.delete_producto %}
               <a  class="btn btn-danger btn-sm " onclick="eliminaProducto({{ pd.id }})">Eliminar</a>
+              {% endif %}
             </td>
           </tr>
           {% endfor %}
