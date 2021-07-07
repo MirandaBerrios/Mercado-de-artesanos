@@ -9,7 +9,11 @@ from .serializers import ProductoSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework import viewsets 
-
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
+from rest_framework.authtoken.models import Token
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class Producto_create(APIView):
@@ -51,3 +55,20 @@ def Producto_delete(request, id):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Producto.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['POST'])
+def login(request):
+    data = JSONParser().parse(request)
+    username = data['username']
+    password = data['password']
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return Response("Usuario inválido")
+    password_valida = check_password(password, user.password)
+    if not password_valida:
+        return Response("Contraseña incorrecta")
+    token, created = Token.objects.get_or_create(user=user)
+    print(f"Este es el token creado: '{token.key}'")
+    return Response(token.key)
