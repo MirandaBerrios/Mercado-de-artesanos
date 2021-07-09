@@ -1,25 +1,56 @@
 {% load static %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/stylefooter.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_home.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_header.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/conf_producto.css" />
     <link
       rel="stylesheet"
-      href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/assets/dist/css/bootstrap.min.css"
+      href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/sticky-footer-navbar/sticky-footer-navbar.css"
     />
     <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css" />
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/" />
     <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css.map" />
-    <link rel="stylesheet" href="../../static/ArtesanosApp/style/conf_producto.css">
-    <link rel="stylesheet" href="../../static/ArtesanosApp/style/stylefooter.css" />
-    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_header.css" />
-    <script src="../../static/ArtesanosApp/js/sweet_alert.js"></script>
-    <title>Mercado Artesanos</title>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/assets/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/checkout/form-validation.css"
+    />
+    <!-- JQUERY INVOKE -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+      crossorigin="anonymous"
+    ></script>
+  
+    <title>Mercado Artesano</title>
   </head>
+
   <body>
     <header>
       <!-- Fixed navbar -->
@@ -73,108 +104,23 @@
         </div>
       </nav>
     </header>
-    <!-- SWEET ALERT2 -->
-    <script>
-      function eliminaProducto(id){
-        Swal.fire({
-          "title": "¿Estas seguro?",
-          "text":"Esta acción no se puede deshacer",
-          "icono":"question",
-          "showCancelButton":true,
-          "cancelButtonText":"No , Cancelar",
-          "confirmButtonText":"Si , Eliminar",
-          "reverseButtons":true,
-          "confirmButtonColor":"#FF0000",
-          "cancelButtonColor":"#218838"
+
+      <div class="container pt-5 pb-5">
+        <h1 class="pt-5 pb-5 text-center">Cambiar Contraseña</h1>
+          <div class="row justify-content-center">
+              <div class="col-sm-12 col-md-6 col-lg-6 borde_formulario">
+                  <form method="POST">
+                      <div class="centrar">
+                          {% csrf_token %}
+                          {{ form | crispy }}
+                          <input type="submit" class="btn btn-primary d-flex justify-content-end" value="Cambiar contraseña">
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+
       
-        })
-        .then(function(result){
-          if(result.isConfirmed){
-            window.location.href = "/conf/del/"+id
-          }
-        })
-      }
-      </script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {% if messages %}
-        {% for m in messages %}
-        <script>
-          Swal.fire({
-            "title":"Atencion",
-            "text":"{{m}}",
-            "icon":"warning"
-          })
-        </script>
-        {% endfor %}
-    {% endif %}
-
-    <div class="container">
-        <br><br><br><br>
-      <h1 style="text-align: center !important">Mantenedor de Productos</h1>
-      
-      {% if perms.ArtesanosApp.add_producto %}
-      {% if form  %}
-      <form method="POST" action="" enctype="multipart/form-data" id="formulario">
-        <div class="form-group">{% csrf_token %} {{ form|crispy }}</div>
-        <input type="submit"  class="btn btn-primary btnwidth" id="id_guardar" value="Guardar" />
-        <!-- <input type="reset" class="btn btn-primary btnwidth" id="id_nuevo" value="Nuevo"> -->
-        
-        {% if id != '-1' %}
-        <a class="btn btn-danger btnwidth" href="{% url 'conf_producto' 'del' id %}">Eliminar</a>
-        {% endif %}
-        {% endif %}
-        
-        
-    </form>
-    <br><br><br><br><br><br>
-    
-    {% endif %} {% if list %}
-      <table id="tabla_datos " class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>ID</th>
-            <th>Nombre Producto</th>
-            <th>Precio</th>
-            <th>Descripción</th>
-            <th>Imagen</th>
-            {% if perms.ArtesanosApp.change_producto %}
-            <th class="titulo_boton">Editar</th>
-            {% endif %}
-            {% if perms.ArtesanosApp.delete_producto %}
-            <th class="titulo_boton">Eliminar</th>
-            {% endif %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for pd in list %}
-          <tr >
-            <td class="align-middle" >{{ pd.id }}</td>
-            <td class="align-middle">{{ pd.nombre_producto }}</td>
-            <td class="align-middle">{{ pd.precio }}</td>
-            <td class="align-middle">{{ pd.descripcion }}</td>
-            <td><img src="/media/{{ pd.image }}" class="imagen_mini" alt="" /></td>
-            <td class="align-middle">
-              {% if perms.ArtesanosApp.change_producto %}
-              <a href="{% url 'conf_producto' 'upd' pd.id %}" class="btn btn-primary btn-sm  ">Editar</a>
-              {% endif %}
-            </td>
-            <td class="align-middle">
-              {% if perms.ArtesanosApp.delete_producto %}
-              <a  class="btn btn-danger btn-sm " onclick="eliminaProducto({{ pd.id }})">Eliminar</a>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% endif %}
-      <br />
-    </div>
-
-    <!-- SWEET ALERT2 -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <br><br><br><br>
     <footer class="footer1">
       <div class="container">
         <div class="row1">

@@ -92,11 +92,11 @@
             </ul>
             <form class="form-inline mt-2 mt-md-0">
             {% if user.is_authenticated  %}
-            <li><a class="btn_sesion" href="{% url 'logout' %}">cerrar sesión</a></li>
-            <li><a class="btn_sesion" href="#">@{{ user.username}}</a></li>
+            <li><a class="btn_sesion" href="{% url 'cerrar_sesion' %}">cerrar sesión</a></li>
+            <li><a class="btn_sesion" href="{% url 'perfil_usuario' %}">@{{ user.username}}</a></li>
   
             {% else %}  
-            <li><a class="btn_sesion" href="{% url 'login' %}">iniciar sesión</a></li>  
+            <li><a class="btn_sesion" href="{% url 'iniciar_sesion' %}">iniciar sesión</a></li>  
             <li><a class="btn_sesion" href="{% url 'registro' %}">registrate</a></li>  
             {% endif %}
               </select>
@@ -148,11 +148,11 @@
         {% for pd in lista %}
         <!-- INICIO PRODUCTO -->
         <div  class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-            <a href="#"><img class="imagenes_producto mx-auto d-block" height='200px';
+            <a href="{% url 'producto_principal' pd.id %}"><img class="imagenes_producto mx-auto d-block" height='200px';
               width='300px';id="{{ pd.id}}" src="/media/{{ pd.image }}"  /> </a>
           
           <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto1" href="#"
+            <a class="nombre_producto text-decoration-none" id="nombre_producto1" href="{% url 'producto_principal' pd.id %}"
               >{{ pd.nombre_producto}}
             </a>
             <div id="precio_producto1" class="precio-producto text-center">${{ pd.precio }}</div>
@@ -168,11 +168,11 @@
         {% for pd in lista2 %}
         <!-- INICIO PRODUCTO -->
         <div  class="col-sm-12 col-md-6 col-lg-4 col-xl-3 min_product">
-            <a href="#"><img class="imagenes_producto mx-auto d-block" height='200px';
+            <a href="{% url 'producto_principal' pd.id %}"><img class="imagenes_producto mx-auto d-block" height='200px';
               width='300px';id="{{ pd.id}}" src="/media/{{ pd.image }}"  /> </a>
           
           <div class="text-center" class="name-product">
-            <a class="nombre_producto text-decoration-none" id="nombre_producto1" href="#"
+            <a class="nombre_producto text-decoration-none" id="nombre_producto1" href="{% url 'producto_principal' pd.id %}"
               >{{ pd.nombre_producto}}
             </a>
             <div id="precio_producto1" class="precio-producto text-center">${{ pd.precio }}</div>

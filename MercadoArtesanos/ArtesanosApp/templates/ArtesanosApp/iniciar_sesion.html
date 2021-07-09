@@ -1,0 +1,102 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_header.css" />
+
+    <title>Ingreso al sistema</title>
+</head>
+<body>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class=" navbar navbar-expand-md  fixed-top nav_color">
+          <a class="navbar-brand" href="{% url 'home' %}"
+            ><img src="../../static/ArtesanosApp/icons/tienda-en-linea.png" alt="Mercado artesanos" height="50px"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Inicio </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contacto_artesanos' %}">Contacto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'aboutUs' %}">Acerca de nosotros</a>
+              </li>
+              {% if user.is_authenticated  %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'listar_productos' %}">configurar productos</a>
+              </li>
+              {% endif %}
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+            {% if user.is_authenticated  %}
+            <li><a class="btn_sesion" href="{% url 'cerrar_sesion' %}">cerrar sesión</a></li>
+            <li><a class="btn_sesion" href="{% url 'perfil_usuario' %}">@{{ user.username}}</a></li>
+            {% endif %}
+              </select>
+            </form>
+          </div>
+        </nav>
+      </header>
+      {% if messages %}
+   {% for m in messages %}
+   <script>
+   Swal.fire({
+       "title":"Error",
+       "text":"{{m}}",
+       "icon":"error"
+   })
+   </script>
+   {% endfor %}
+   {% endif %}
+    <div class="container">
+        <br><br><br><br><br>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Ingresa tus credenciales</h2>
+                        <hr>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form|crispy}}
+                            <a href="{% url 'home' %}">Home</a> |
+                            <a href="{% url 'registro' %}">Registrate</a> 
+                            <input type="submit" class="btn btn-success float-right"  value="ingresar">
+                        </form>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- SWEET ALERT2 -->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+
+</body>
+</html>

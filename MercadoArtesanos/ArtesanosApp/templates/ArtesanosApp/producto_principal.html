@@ -7,26 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-dist/css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_producto_principal.css" />
-    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_producto_principal.css" />
-    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_producto.css" />
-    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style/style_header.css" />
-    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style/stylefooter.css">
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/style_header.css" />
+    <link rel="stylesheet" href="../../static/ArtesanosApp/style/stylefooter.css">
     <!-- JQUERY INVOKE -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    <!-- LLAMAR A LAS HOJAS JS -->
-    <script src="./js/animacion.js"></script>
-    <script src="./js/product_information.js"></script>
-    <!-- LLAMAR API TO TRANSFORM DOLLAR TO CLP  -->
-    <script src="./js/dolar_clp_principal.js"></script> 
+
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/assets/dist/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="../../static/ArtesanosApp/bootstrap/bootstrap-4.6.0-examples/checkout/form-validation.css"
+  />
 
     <title>Producto</title>
   </head>
 <body class="mainClass">
   <header>
     <!-- Fixed navbar -->
-    <nav class=" navbar navbar-expand-md  fixed-top nav_color">
+    <nav class="  navbar navbar-expand-md  fixed-top nav_color">
       <a class="navbar-brand" href="{% url 'home' %}"
         ><img src="../../static/ArtesanosApp/icons/tienda-en-linea.png" alt="Mercado artesanos" height="50px"
       /></a>
@@ -64,55 +72,37 @@
         </ul>
         <form class="form-inline mt-2 mt-md-0">
         {% if user.is_authenticated  %}
-        <li><a class="btn_sesion" href="{% url 'logout' %}">cerrar sesión</a></li>
-        <li><a class="btn_sesion" href="#">@{{ user.username}}</a></li>
+        <li><a class="btn_sesion" href="{% url 'cerrar_sesion' %}">cerrar sesión</a></li>
+        <li><a class="btn_sesion" href="{% url 'perfil_usuario' %}">@{{ user.username}}</a></li>
 
         {% else %}  
-        <li><a class="btn_sesion" href="{% url 'login' %}">iniciar sesión</a></li>  
+        <li><a class="btn_sesion" href="{% url 'iniciar_sesion' %}">iniciar sesión</a></li>  
         <li><a class="btn_sesion" href="{% url 'registro' %}">registrate</a></li>  
         {% endif %}
           </select>
         </form>
       </div>
     </nav>
+    <br><br><br><br>
   </header>
+  
 
-    <div class="col-12 mastergrid1">
+    <div class="col-12 mastergrid mt-5 pt-5">
       <div class="container-fluid dimension-producto col-sm-12 col-8">
         <div class="row col-12">
           <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 producto-principal">
             <div class="container d-flex">
-              <div class="wrapper">
-                <div class="card">
-                  <span class="off bg-dark">0% Oferta </span>
-                  <div id="imagen_producto"class="text-center">
-                    <img
-                      id="main-image"
-                      src="../../static/ArtesanosApp/image/nostock.jpg"
-                    
-                    />
-                  </div>
-                </div>
+                  <div id="imagen_producto">
+                    <img class="main_image w-100 align-content-center" id="main-image" src="/media/{{ lista.image }}"  />
               </div>
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 lateral">
             <div><h1 class="tag">Personalizable</h1></div>
-            <div  ><h2 id="titulo_producto" class="page-header">Nombre del producto</h2></div>
+            <div  ><h2 id="titulo_producto" class="page-header">{{ lista.nombre_producto }}</h2></div>
             <div ><h2  id="precio_producto1" class="precio_producto" ></h2></div>
-            <div>
-              <a href=""><img class="fav" src="../../static/ArtesanosApp/image/corazon.png" /></a>
-            </div>
-            <div id="btn.carrito">
-              <a href=""
-                ><input class="butons" type="button" value="Agregar al carrito"
-              /></a>
-            </div>
-            <div id="btn.carrito">
-              <a href=""
-                ><input class="butons" type="button" value="Comprar"
-              /></a>
-            </div>
+              <button class="boton1 d-flex mt-3" style="background-color: rgb(18,62,91);color:white" > Agregar a carrito</button>
+              <button class="boton1 d-flex float-left mt-3" style="background-color: rgb(18,62,91); color:white" > Agregar a favoritos</button>
           </div>
         </div>
       </div>
@@ -121,10 +111,11 @@
     <div class="container-fluid col-md-10 col-lg-10 col-xl-10 col-sm-12 mt-auto">
       <div class="row">
       <div  class="container text-center">
-        <h1 id="descripcion_titulo">Nombre del Producto</h1>
+        <h1 id="descripcion_titulo">{{ lista.nombre_producto }}</h1>
+        <br><br><br><br>
       </div>
       <div  class="list-description d-block align-items-center ">
-          <h3 id="descripcion_producto"></h3>
+          <h3 id="descripcion_producto">{{ lista.descripcion }}</h3>
       </div>
     </div>  
     </div>
